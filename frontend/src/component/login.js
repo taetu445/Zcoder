@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from '../axios';
 import './login.css';
 
+const server = 'http://localhost:3000';
+
 const Login = () => {
     const navigate = useNavigate();
     const [input, setInput] = useState({
@@ -13,7 +15,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/api/users/login', {
+            const response = await axios.post(`${server}/api/users/login`, {
                 email: input.email,
                 password: input.password
             });
