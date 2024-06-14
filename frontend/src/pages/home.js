@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../component/Navbar.js";
 import './home.css';
@@ -6,9 +6,13 @@ import './home.css';
 const Home = () => {
     const navigate = useNavigate();
     const userName = JSON.parse(localStorage.getItem('user'));
-    
+    const [solvedCount, setSolvedCount] = useState(0);
+
     useEffect(() => {
-        // Fetch user data or problem set if necessary
+        const savedCount = localStorage.getItem('solvedCount');
+        if (savedCount) {
+            setSolvedCount(parseInt(savedCount, 10));
+        }
     }, []);
 
     return (
@@ -23,7 +27,7 @@ const Home = () => {
                 <h3>Your Profile</h3>
                 <div className="profile-details">
                     <p><strong>Name:</strong> {userName ? userName.name : 'Coder'}</p>
-                    <p><strong>Problems Solved:</strong> 10</p>
+                    <p><strong>Problems Solved:</strong> {solvedCount}</p>
                     <p><strong>Rating:</strong> 1200</p>
                 </div>
             </section>

@@ -44,6 +44,7 @@ const Problemset = () => {
     useEffect(() => {
         localStorage.setItem('solvedProblems', JSON.stringify(solvedProblems));
         localStorage.setItem('submissions', JSON.stringify(submissions));
+        localStorage.setItem('solvedCount', solvedProblems.length);
     }, [solvedProblems, submissions]);
 
     const toggleSolved = (problemId) => {
